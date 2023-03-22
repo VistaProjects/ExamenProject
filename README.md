@@ -42,3 +42,4 @@
 * [ ] Zaken als (record/file) locking niet zo relevant zijn
 * [ ] Zaken als stijl, look & feel, iconen niet zo relevant zijn
 * [ ] Zaken als permissies niet zo relevant zijn
+
