@@ -1,0 +1,438 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+html {
+background-color: grey;
+display: block;
+
+
+
+/* Navbar */
+
+
+}
+/*Positioning                 */
+
+.Nour {
+    width: 100px;
+    height: 100px;
+    color: red;
+    background-color: red;
+    float: left;
+    margin-top: 5%;
+    margin-left: 10%;
+    display: block;
+    position: relative;
+}
+.Nour4 {
+    width: 100px;
+    height: 100px;
+    color: rgb(63, 60, 60);
+    background-color: red;
+    float: left;
+    margin-top: 5%;
+    margin-left: 10%;
+    display: block;
+    position: relative;
+    align-items: center;
+}
+
+.Nour5 {
+    width: 100px;
+    height: 100px;
+
+    float: left;
+    margin-top: 5%;
+    margin-left: 10%;
+    display: block;
+    position: relative;
+}
+
+.Jarno {
+
+    height: 100px;
+    width: 100px;
+    color: red;
+    background-color: red;
+    float: left;
+    margin-top: 5%;
+    margin-left: 10%;
+    display: block;
+    position: relative;
+
+
+}
+
+.Jarno1 {
+
+    height: 100px;
+    width: 100px;
+    color: red;
+    background-color: red;
+    float: left;
+    margin-top: 5%;
+    margin-left: 10%;
+    border: solid rgb(114, 109, 109) 10px;
+
+
+
+}
+
+.Jarno2 {
+
+    height: 100px;
+    width: 100px;
+    color: red;
+    background-color: red;
+    float: left;
+    margin-top: 5%;
+    margin-left: 10%;
+    display: block;
+    position: relative;
+    border: solid rgb(10, 63, 255) 10px;
+    border-radius: 25px;
+
+
+}
+
+.Jarno3 {
+
+    height: 100px;
+    width: 100px;
+    color: red;
+    background-color: red;
+    float: left;
+    margin-top: 5%;
+    margin-left: 10%;
+    display: block;
+    position: relative;
+
+
+}
+.Jarno3 {
+
+    height: 100px;
+    width: 100px;
+    color: red;
+    background-color: red;
+    float: left;
+    margin-top: 5%;
+    margin-left: 10%;
+    display: block;
+    position: relative;
+
+
+}
+
+.Jarno3_item p {
+    color: white;
+}
+
+.Jarno4 {
+
+    height: 100px;
+    width: 100px;
+    color: red;
+    background-color: red;
+    float: left;
+    margin-top: 5%;
+    margin-left: 10%;
+    display: block;
+    position: relative;
+
+
+}
+.Jarno5 {
+
+    height: 100px;
+    width: 100px;
+    color: red;
+    background-color: red;
+    float: left;
+    margin-top: 5%;
+    margin-left: 10%;
+    display: block;
+    position: relative;
+
+
+}
+
+/* Main Div upper row and lower row */
+.Jarno_main_page {
+    width: auto;
+    height: 300px;
+}
+
+/* .Main_Page {
+    width: auto;
+    height: 300px;
+} */
+
+
+
+/* Styling Jarno */
+
+  .Jarno {
+    --border-size: 3px;
+    --border-angle: 0turn;
+    width: 100px;
+    height: 100px;
+    background-image: conic-gradient(from var(--border-angle), #213, #112 50%, #213), conic-gradient(from var(--border-angle), transparent 20%, #08f, #f03);
+    background-size: calc(100% - (var(--border-size) * 2)) calc(100% - (var(--border-size) * 2)), cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    animation: bg-spin 3s linear infinite;
+}
+@keyframes bg-spin {
+    to {
+        --border-angle: 1turn;
+   }
+}
+.Jarno:hover {
+    animation-play-state: paused;
+}
+@property --border-angle {
+    syntax: "<angle>";
+    inherits: true;
+    initial-value: 0turn;
+}
+
+/* Styling Nour */
+
+/* Start Show and Hide the box */
+#box1 {
+    background-color: #08f;
+}
+button.myButton {
+    transform: translateX(-250px);
+}
+.hidden {
+    visibility: hidden;
+}
+/* Eind Show and Hide the box */
+
+/* Paragraf styling to change color auto */
+p {
+    -webkit-animation: color-change 5s infinite;
+    -moz-animation: color-change 5s infinite;
+    -o-animation: color-change 5s infinite;
+    -ms-animation: color-change 5s infinite;
+    animation: color-change 5s infinite;
+}
+
+@-webkit-keyframes color-change {
+    0% { color: red; }
+    50% { color: blue; }
+    100% { color: red; }
+}
+@-moz-keyframes color-change {
+    0% { color: red; }
+    50% { color: blue; }
+    100% { color: red; }
+}
+@-ms-keyframes color-change {
+    0% { color: red; }
+    50% { color: blue; }
+    100% { color: red; }
+}
+@-o-keyframes color-change {
+    0% { color: red; }
+    50% { color: blue; }
+    100% { color: red; }
+}
+@keyframes color-change {
+    0% { color: red; }
+    50% { color: blue; }
+    100% { color: red; }
+}
+/* Paragraf styling to change color auto */
+/* Font awsome box1 */
+
+.fa-solid, .fas {
+    font-weight: bolder;
+    font-size: 60px;
+    position: absolute;
+    top: 44px;
+    right: 15px;
+}
+/* Font awsome box1 */
+
+/* Pause Button */
+*, *:after, *:before {
+    box-sizing: border-box;
+}
+body {
+    min-height: 100vh;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    /* background-image: linear-gradient(to bottom, #000000, #000000); */
+}
+#pause_button {
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+    border: 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #d0d7cd;
+    box-shadow: inset 0 10px 20px 0 rgba(51, 51, 51, 0.375), 0 2px 0 0 rgba(255, 255, 255, 0.25);
+    transition: 0.5s ease;
+    cursor: pointer;
+}
+#pause_button:before {
+    position: absolute;
+    content: "";
+    display: block;
+    border-radius: 50%;
+    width: 70%;
+    height: 70%;
+    top: 15%;
+    left: 15%;
+    background-image: linear-gradient(to bottom, #e7f2e1, #afb0aa);
+    box-shadow: 0 15px 20px 0 rgba(51, 51, 51, 0.375), inset 0 -3px 0 0 rgba(51, 51, 51, 0.125);
+    transition: 0.5s ease;
+}
+#pause_button:after {
+    position: absolute;
+    content: "";
+    display: block;
+    border-radius: 50%;
+    width: 40%;
+    height: 40%;
+    top: 30%;
+    left: 30%;
+    background-image: linear-gradient(to bottom, #d6ded1, #e1ebdb);
+    box-shadow: inset 0 -3px 0 0 rgba(238, 238, 238, 0.75), inset 0 3px 0 0 rgba(51, 51, 51, 0.1);
+}
+#pause_button span {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transition: 0.25s ease;
+    z-index: 1;
+}
+#pause_button span:before, #pause_button span:after {
+    position: absolute;
+    content: "";
+    width: 8px;
+    height: 32px;
+    top: 50%;
+    left: 50%;
+    background-color: #000000;
+    box-shadow: inset 2px -3px 4px 0 rgba(51, 51, 51, 0.25);
+    transform: translate(-50%, -50%);
+    border-radius: 99em;
+    transition: 0.25s ease;
+}
+#pause_button span:before {
+    left: -10px;
+}
+#pause_button span:after {
+    left: 10px;
+}
+#pause_button:focus {
+    outline: 0;
+}
+#pause_button[aria-checked="true"] {
+    outline: 0;
+}
+#pause_button[aria-checked="true"]:before {
+    box-shadow: 0 5px 20px 0 rgba(51, 51, 51, 0.25), inset 0 -3px 0 0 rgba(51, 51, 51, 0.125);
+}
+#pause_button[aria-checked="true"] span:before, #pause_button[aria-checked="true"] span:after {
+    background-color: #ff0000;
+    box-shadow: inset 2px -3px 4px 0 rgba(51, 51, 51, 0.75);
+}
+/* -------------------------------------------------------------------------------------------------------------- END PAUSE BUTTON */
+
+/* Styling for the + button */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.action {
+    margin: 25%;
+  bottom: 50px;
+  left: 50px;
+  width: 50px;
+  height: 50px;
+  background: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 5px 5px rgba(0,0,0,0.1);
+}
+.action span {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #a13dea;
+  font-size: 2em;
+  transition: .3s ease-in-out;
+  border: blue 5px solid;
+}
+.action.active span  {
+  transform: rotate(135deg);
+}
+
+.action ul {
+  position: absolute;
+  bottom: 55px;
+  background: #fff;
+  min-width: 250px;
+  padding: 20px;
+  border-radius: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: .3s;
+}
+.action.active ul {
+  z-index: 10;
+  bottom: 65px;
+  opacity: 1;
+  visibility: visible;
+  transition: .3s;
+}
+.action ul li {
+  list-style:none;
+   text-decoration: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 7px 0;
+}
+
+.action ul li:hover {
+  font-weight: 600;
+}
+.action ul li:not(:last-child) {
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.action ul li img {
+  margin-right: 15px;
+  opacity: .2;
+  transform: scale(.7);
+}
+.action ul li:hover img {  
+  opacity: .8;
+  transform: scale(1.0);
+}
+
+/* ----------------------------------------------------------------ENd + button */
+
+/* Jarno3 button Animation */
+
+
