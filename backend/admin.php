@@ -222,14 +222,11 @@ if(isset($_POST['submit'])) {
 </body>
 
 <script>
-<<<<<<< Updated upstream
-=======
 	// function reload () {
 	// 	setTimeout(() => window.location.reload(), 300);
 	// }	
 		// window.addEventListener('popstate', reload(), false);
 		
->>>>>>> Stashed changes
 		window.history.pushState({}, document.title, window.location.href.split('?')[0]);
 	    <?php
             // Loop through options array and print options
@@ -280,7 +277,6 @@ if(isset($_POST['submit'])) {
 					codeblock.innerHTML = html.value
 					// code.value = html.value
 					// console.log(html.value);
-code
                 }
             };
             // open the request
