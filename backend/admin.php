@@ -4,15 +4,16 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<title>Admin panel</title>
 	<style>
-		* {
+		/* * {
 			padding : 5px;
-		}
-
+		}  */
 		.error {
 			color: red;
 		}
-
 	</style>
+	<link rel="stylesheet" href="vs.min.css">
+	<script src="highlight.min.js"></script>
+	<script>hljs.highlightAll();</script>
 </head>
 <body>
 
@@ -60,12 +61,6 @@ if(!isset($_POST['submit'])) {
 	}
 
 }  
-
-// var_dump($name_list);
-
-// {"card":{"eerste":"<div class=\"btn-group\">\n  <button type=\"button\" class=\"btn btn-danger\">Action<\/button>\n  <button type=\"button\" class=\"btn btn-danger dropdown-toggle dropdown-toggle-split\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">\n    <span class=\"visually-hidden\">Toggle Dropdown<\/span>\n  <\/button>\n  <ul class=\"dropdown-menu\">\n    <li><a class=\"dropdown-item\" href=\"#\">Action<\/a><\/li>\n    <li><a class=\"dropdown-item\" href=\"#\">Another action<\/a><\/li>\n    <li><a class=\"dropdown-item\" href=\"#\">Something else here<\/a><\/li>\n    <li><hr class=\"dropdown-divider\"><\/li>\n    <li><a class=\"dropdown-item\" href=\"#\">Separated link<\/a><\/li>\n  <\/ul>\n<\/div>","Rik":"<div class=\"btn-group\">\r\n  <button type=\"button\" class=\"btn btn-danger\">hoi<\/button>\r\n  <button type=\"button\" class=\"btn btn-danger dropdown-toggle dropdown-toggle-split\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">\r\n    <span class=\"visually-hidden\">joey<\/span>\r\n  <\/button>\r\n  <ul class=\"dropdown-menu\">\r\n    <li><a class=\"dropdown-item\" href=\"#\">Action<\/a><\/li>\r\n    <li><a class=\"dropdown-item\" href=\"#\">Another action<\/a><\/li>\r\n    <li><a class=\"dropdown-item\" href=\"#\">Something else here<\/a><\/li>\r\n    <li><hr class=\"dropdown-divider\"><\/li>\r\n    <li><a class=\"dropdown-item\" href=\"#\">Separated link<\/a><\/li>\r\n  <\/ul>\r\n<\/div>","Joey":"<div class=\"btn-group\">\r\n  <button type=\"button\" class=\"btn btn-danger\">hoi<\/button>\r\n  <button type=\"button\" class=\"btn btn-danger dropdown-toggle dropdown-toggle-split\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">\r\n    <span class=\"visually-hidden\">rik<\/span>\r\n  <\/button>\r\n  <ul class=\"dropdown-menu\">\r\n    <li><a class=\"dropdown-item\" href=\"#\">Action<\/a><\/li>\r\n    <li><a class=\"dropdown-item\" href=\"#\">Another action<\/a><\/li>\r\n    <li><a class=\"dropdown-item\" href=\"#\">Something else here<\/a><\/li>\r\n    <li><hr class=\"dropdown-divider\"><\/li>\r\n    <li><a class=\"dropdown-item\" href=\"#\">Separated link<\/a><\/li>\r\n  <\/ul>\r\n<\/div>","a":"b","hahahhahaah":"<!DOCTYPE html> <html> <head> \t<title>HTML Form Example<\/title> <\/head> <body>  <h2>HTML Form Example<\/h2>","test":"aaaaaaaaaaa","ccccc":"<form method=\"post\" action=\"\/backend\/admin.php\"> \t<label for=\"name\">TABELNAME:<\/label> \t<input type=\"text\" name=\"TABELNAME\"><br>  \t<label for=\"email\">NAME:<\/label> \t<input type=\"text\" name=\"NAME\"><br>  \t<label for=\"phone\">HTMLCODE:<\/label> \t<input type=\"text\" name=\"HTMLCODE\"><br>  \t<input type=\"submit\" name=\"submit\" value=\"Submit\"> <\/form>","hallojongen":"bahfdjsbgshbgfd","jjjj":"dsgsfdg","tretre":"agdfgdgd","gggg":"ggggg","blauw":"jsdhkgjshg"},"htmlcode":{"test":"aaaaa"},"test":{"testing":"<p>hoi rik<\/p>","rik":"halo rikkiee"},"success":true}
-
-
 
 
 
@@ -225,7 +220,9 @@ if(isset($_POST['submit'])) {
 		?>
 	</select><br>
 	<label for="HTMLCODE">HTMLCODE:</label><br>
-
+	<pre>
+		<div id="testing"></div>
+	</pre>
 	<textarea style="width: 90%; height: 250px;" type="text" name="HTMLCODE" id="HTMLCODE" value=""></textarea ><br>
 	
 	<input type="submit" name="submit" value="Submit" id="inputButton">
@@ -238,7 +235,6 @@ if(isset($_POST['submit'])) {
 	// }	
 		// window.addEventListener('popstate', reload(), false);
 		
-
 		window.history.pushState({}, document.title, window.location.href.split('?')[0]);
 	    <?php
             // Loop through options array and print options
@@ -284,12 +280,23 @@ if(isset($_POST['submit'])) {
                 if (this.readyState == 4 && this.status == 200) {
                     // add the response to the element
                     let json = JSON.parse(this.responseText)
-					// console.log(json    );
-                    document.getElementById("HTMLCODE").value = html_beautify(json.card[name])
+					// console.log(json);
+					let code = document.getElementById("HTMLCODE")
+					let codeblock = document.getElementById("testing")
+					
+                    code.value = html_beautify(json.card[name])
+					
+
+					html = hljs.highlightAuto(code.value)
+
+					codeblock.innerHTML = html.value
+					// code.value = html.value
+					// console.log(html.value);
                 }
             };
             // open the request
-            xhttp.open("GET", "/backend/index.php?item=" + value, true);
+			
+            xhttp.open("GET", '<?php echo $base_link . "/index.php?item=" ?>' + value, true);
             // send the request
             xhttp.send();
             
