@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<title>Admin panel</title>
 	<style>
+		* {
+			padding : 5px;
+		}
+
 		.error {
 			color: red;
 		}
@@ -30,7 +35,7 @@ if ($result->num_rows > 0) {
         array_push($options, $row['Tables_in_' . $dbName]);
     }
 } else {
-    echo "0 results";
+    // echo "0 results";
 }
 
 if(!isset($_POST['submit'])) {
@@ -74,12 +79,15 @@ if(isset($_POST['submit'])) {
 	}
 	
 	if ($_GET['type'] == "addhtml") {
+		if (empty($_POST['TABELNAME']) || empty($_POST['NAME'])) die("<p style='color:red; font-weight:bold;'>Please fill in all fields 💀</p>
+		<br><button onclick='window.history.back()'>Go back</button>");
 		// Get form data
 		$tabel = preg_replace('/[^a-zA-Z0-9_]/', '', $_POST['TABELNAME']);
 		$name = preg_replace('/[^a-zA-Z0-9_]/', '', $_POST['NAME']);
 		$code = $_POST['HTMLCODE'];
 		if (empty($tabel) || empty($name) || empty($code)) {
-			echo "<p style='color:red'>Please fill in all fields 💀</p>";
+			echo "<p style='color:red; font-weight:bold;'>Please fill in all fields 💀</p>";
+			header("Refresh:2");
 		} else {
 	
 			$slashes = addslashes($code);
@@ -87,10 +95,12 @@ if(isset($_POST['submit'])) {
 			// Insert data into database
 			$sql = "INSERT INTO $tabel (name, htmlcode) VALUES ('$name', '$slashes')";
 			if ($conn->query($sql) === TRUE) {
-				echo "<p style='color:green'>New html code created 💕</p>";
+				echo "<p style='color:green; font-weight:bold;'>New html code created 💕</p>";
+				header("Refresh:2");
 			} else {
 				// echo "Error: " . $sql . " " . $conn->error;
-				echo "<p style='color:red'>Name already exists ☢</p>";
+				echo "<p style='color:red; font-weight:bold;'>Name already exists ☢</p>";
+				header("Refresh:2");
 			}
 			$conn->close();
 		}
@@ -98,6 +108,8 @@ if(isset($_POST['submit'])) {
 
 	if ($_GET['type'] == "addtable") {
 		// echo "Creating new table " .  $_POST['TABELNAME'];
+		if (empty($_POST['TABELNAME'])) die("<p style='color:red; font-weight:bold;'>Please fill in all fields 💀</p>
+		<br><button onclick='window.history.back()'>Go back</button>");
 
         $tabelname = preg_replace('/[^a-zA-Z0-9_]/', '', $_POST['TABELNAME']);
 
@@ -109,9 +121,11 @@ if(isset($_POST['submit'])) {
         )";
             
         if ($conn->query($sql) === TRUE) {
-          echo "Table MyGuests created successfully";
+		  	echo "<p style='color:green; font-weight:bold;'>New html code created 💕</p>";
+			  header("Refresh:2");
         } else {
-          echo "Error creating table: " . $conn->error;
+        	echo "<p style='color:red; font-weight:bold;'>Error creating table: " . $conn->error . "💀</p><br>";
+			header("Refresh:2");
         }
 		$conn->close();
 	}
@@ -129,9 +143,11 @@ if(isset($_POST['submit'])) {
         $sql = "UPDATE $tabelname SET htmlcode='$slashes' WHERE name='$name'";
             
         if ($conn->query($sql) === TRUE) {
-          echo "Table MyGuests created successfully";
+			echo "<p style='color:green; font-weight:bold;'>New html code created 💕</p>";
+			header("Refresh:2");
         } else {
-          echo "Error creating table: " . $conn->error;
+			echo "<p style='color:red; font-weight:bold;'>Error creating table: " . $conn->error . "💀</p><br>";
+			header("Refresh:2");
         }
 		$conn->close();
 	}
@@ -176,9 +192,9 @@ if(isset($_POST['submit'])) {
 
 <h2>Edit html code</h2>
 
-<form id="edit" method="post" action="<?php echo $_SERVER['PHP_SELF'] . "?type=edithtml" ?>">
+<form id="edit" method="post" action="<?php echo $_SERVER['PHP_SELF'] . "?type=edithtml" ?>" >
 	<label for="TABELNAME">TABELNAME:</label>
-	<select name="TABELNAME" id="TABELNAME" onchange="check()">
+	<select name="TABELNAME" id="TABELNAME" onchange="check(), CheckForm()">
         <?php
             // Loop through options array and print options
             foreach($options as $option) {
@@ -217,6 +233,12 @@ if(isset($_POST['submit'])) {
 </body>
 
 <script>
+	// function reload () {
+	// 	setTimeout(() => window.location.reload(), 300);
+	// }	
+		// window.addEventListener('popstate', reload(), false);
+		
+
 		window.history.pushState({}, document.title, window.location.href.split('?')[0]);
 	    <?php
             // Loop through options array and print options
@@ -241,6 +263,13 @@ if(isset($_POST['submit'])) {
 		// 	card = [ "code 1", "code 2" ],
 		// 	test = [ "code 1", "code 2" ]
 		// ]
+
+		function CheckForm () {
+			// check if TAbelname is parent of Name
+			document.getElementById("HTMLCODE").value = ''
+			// return !document.getElementById("TABELNAME").value == document.getElementById("NAME").id;
+		}
+
 
 
 		function editcode() {

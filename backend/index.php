@@ -4,7 +4,7 @@ include_once "database.php";
 
 // set header json
 header('Content-Type: application/json');
-
+// error_reporting(0);
 
 // Check connection
 if ($conn->connect_error) {
@@ -46,20 +46,20 @@ if ($item == "all"){
 		while($row = $query->fetch_assoc()) {
 			$names[] = $row["Tables_in_" . $dbName];
 		}
-		
+
 		// loop names array
 		for ($i=0; $i < count($names); $i++) { 
 			
 			$queryTable = "SELECT * FROM " . $names[$i];
 			$queryTable = $conn->query($queryTable);
+			// var_dump($queryTable);
 			// var_dump($query);
 			if (!$queryTable){
 				displayError($conn->error);
 			}
 			$counting = mysqli_num_rows($queryTable);
-
-			
-			if ($counting > 0) {
+			// echo $counting;
+			if ($counting >= 0 ) {
 				while($rowTables = $queryTable->fetch_assoc()) {
 					$id = $rowTables['id'];
 					$htmlcode = $rowTables['htmlcode'];
@@ -83,17 +83,22 @@ if ($item == "all"){
 // If a specific item is requested
 
 $query = "SELECT * FROM " . $item;
-$query = $conn->query($query);
-
-if (!$query){
-	displayError($conn->error);
+try {
+	$query = $conn->query($query);
+}
+catch (Exception $e) {
+	displayError($e->getMessage());
 }
 
+// if (!$query){
+// 	displayError($conn->error);
+// }
 $row_count = mysqli_num_rows($query);
 
 
 if ($row_count > 0) {
 	while($row = $query->fetch_assoc()) {
+
 		$id = $row['id'];
 		$htmlcode = $row['htmlcode'];
 		$name = $row['name'];
