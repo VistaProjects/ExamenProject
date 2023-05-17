@@ -4,7 +4,11 @@
 var mySection = document.getElementById('hero'),
   sideButton = document.createElement('div');
 sideButton.innerHTML = `
-<a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" data-bs-target="#offcanvasScrolling aria-controls="offcanvasExample">
+<!-- create button to call saveHtml() -->
+<button onclick="saveHtml()">Save</button>
+
+<!-- Button trigger offcanvas -->
+<a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
 Control sidebar
 </a>
 
@@ -86,6 +90,41 @@ Control sidebar
 `;
 
 
+function saveHtml() {
+  // remove all the divs with id delete
+  $('div[id=delete]').remove();
+  
+  let html = document.documentElement.outerHTML
+  
+  // Create a Blob object from the string data
+  var blob = new Blob([html], { type: 'text/plain' });
+
+  // Create a FormData object
+  var formData = new FormData();
+  formData.append('file', blob, 'new.html');
+
+  // Create a new XMLHttpRequest object
+  var xhr = new XMLHttpRequest();
+
+  // Set up the AJAX request
+  xhr.open('POST', '../backend/?Update=true', true);
+
+  // Define the callback function when the request is complete
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      console.log(xhr.responseText);
+      console.log('File uploaded successfully');
+    } else {
+      console.log('Error uploading file');
+    }
+  };
+
+  // Send the FormData object to the PHP server
+  xhr.send(formData);
+
+}
+
+
 function capitalize(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -95,11 +134,11 @@ function loadData() {
   .then(response => response.json())
   .then(data => {
     // this is the example data : {"cards":{"test":"<p>hoi rik<\/p>","tete":"ewtwetw","tetwe":"dsggsg","dsgsdgsd":"dsgdsg","testingmetrik":"<p>hoi rik<\/p> <html>"},"navbar":{"Testing":"<!DOCTYPE html> <html> <head> \t<title>HTML Form Example<\/title> <\/head> <body>  <h2>HTML Form Example<\/h2>","rikiee":"<p>hoi rik<\/p> <html>"},"success":true}
-    console.log(data);
+    // console.log(data);
     // if (data.success == false) alert(data.error.text);
   
     var accordion = document.querySelector('.accordion')
-    console.log(accordion);
+    // console.log(accordion);
     // loop through the properties of the object and use that as the title and
     // content of the accordion
     for (const [key, value] of Object.entries(data)) {
@@ -142,6 +181,7 @@ function loadData() {
           // div.setAttribute('id', 'borderTest');
           div.innerHTML = value[title];
           
+          mainDiv.innerHTML += `<h4>${capitalize(title)}</h4>` 
           mainDiv.appendChild(div);
           mainDiv.innerHTML += '<hr>'
           
@@ -159,9 +199,9 @@ sideButton.style.position = "fixed";
 mySection.appendChild(sideButton);
 mySection.insertBefore(sideButton, mySection.firstElementChild);
 
+
 const myDivSideBar = document.getElementsByClassName('offcanvas offcanvas-start')[0];
 myDivSideBar.style.transform = 'translateY(89px)';
-
 
 var checkExist = setInterval(function() {
   if (document.querySelectorAll('.accordion').length) {

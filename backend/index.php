@@ -20,6 +20,25 @@ function displayError($text) {
 	die(json_encode(array($error)));
 }
 
+// Check if the file was uploaded successfully
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
+	$tempFilePath = $_FILES['file']['tmp_name'];
+	$newFilePath = './new.html'; // Path to save the file in the current directory
+  
+	// Move the uploaded file to the desired location
+	if (move_uploaded_file($tempFilePath, $newFilePath)) {
+	  echo 'File uploaded successfully';
+	  echo $tempFilePath;
+	  echo $newFilePath;
+	} else {
+	  echo 'Error uploading file';
+	}
+  } else {
+	echo 'Invalid request';
+}
+
+
+
 
 // echo "Connected successfully";
 if (isset($_GET['item']))
