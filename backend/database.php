@@ -3,7 +3,7 @@
 // connect to local database
 $serverName = 'localhost';
 $userName = 'root';
-$userPassword = 'vistasql123';
+$userPassword = 'Nour123';
 $dbName = 'duzenco';
 
 $base_link = '/examenproject/backend/';

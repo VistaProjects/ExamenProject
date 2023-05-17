@@ -4,12 +4,13 @@
 var mySection = document.getElementById('hero'),
   sideButton = document.createElement('div');
 sideButton.innerHTML = `
-<a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+<a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" data-bs-target="#offcanvasScrolling aria-controls="offcanvasExample">
 Control sidebar
 </a>
 
 
-<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" data-bs-scroll="true">
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" data-bs-scroll="true" data-bs-backdrop="false">
 <div class="offcanvas-header">
   <h5 class="offcanvas-title" id="offcanvasExampleLabel">Control Panel</h5>
   <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -90,7 +91,7 @@ function capitalize(string) {
 }
 
 function loadData() {
-  fetch('http://localhost/backend/?item=all')
+  fetch('http://localhost/examenproject/backend/?item=all')
   .then(response => response.json())
   .then(data => {
     // this is the example data : {"cards":{"test":"<p>hoi rik<\/p>","tete":"ewtwetw","tetwe":"dsggsg","dsgsdgsd":"dsgdsg","testingmetrik":"<p>hoi rik<\/p> <html>"},"navbar":{"Testing":"<!DOCTYPE html> <html> <head> \t<title>HTML Form Example<\/title> <\/head> <body>  <h2>HTML Form Example<\/h2>","rikiee":"<p>hoi rik<\/p> <html>"},"success":true}
@@ -158,6 +159,9 @@ sideButton.style.position = "fixed";
 mySection.appendChild(sideButton);
 mySection.insertBefore(sideButton, mySection.firstElementChild);
 
+const myDivSideBar = document.getElementsByClassName('offcanvas offcanvas-start')[0];
+myDivSideBar.style.transform = 'translateY(89px)';
+
 
 var checkExist = setInterval(function() {
   if (document.querySelectorAll('.accordion').length) {
@@ -190,21 +194,15 @@ elements.forEach(element => {
     allElements.forEach(element => {
       element.classList.remove('clicked');
       });
-      console.log(allElements);
       const text = element.cloneNode(true).textContent;
-    // const text = element.textContent; // get the text content of the clicked element
-    console.log(text)
-    // update the text area in the sidebar with the clicked element's text
-    const sidebarTextArea = document.getElementById('mytextarea');
-    console.log(sidebarTextArea);
-    sidebarTextArea.value = text;
-    sidebarTextArea.innerHTML = `${text}`;
-    sidebarTextArea.value = text;
-    sidebarTextArea.style.display = 'block';
-    // To put the text in the right place
+
+    // add the clicked text to the modal
+    // put the text in the right place
     var iframe = document.getElementById("mytextarea_ifr");
     var elmnt = iframe.contentWindow.document.getElementById("tinymce");
-    // elmnt.style.display = "none";
+    elmnt.removeAttribute('data-mce-placeholder');
+    elmnt.removeAttribute('aria-placeholder');
+
 
 
     // const classDiv = document.getElementById('tinymce');
@@ -224,25 +222,25 @@ elements.forEach(element => {
     offcanvas.show();
 
     // initialize TinyMCE on the text area
-    tinymce.init({
-      selector: '#mytextarea',
-      height: 300,
-      plugins: [
-        'a11ychecker','advlist','advcode','advtable','autolink','checklist','export',
-        'lists','link','image','charmap','preview','anchor','searchreplace','visualblocks',
-        'powerpaste','fullscreen','formatpainter','insertdatetime','media','table','help','wordcount'
-      ],
-      toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | ' +
-        'alignleft aligncenter alignright alignjustify | ' +
-        'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help',
-      setup: editor => {
-        // listen for changes in the editor content and update the original element
-        editor.on('change', () => {
-          const newContent = editor.getContent();
-          element.textContent = newContent;
-        });
-      }
-    });
+    // tinymce.init({
+    //   selector: '#mytextarea',
+    //   height: 300,
+    //   plugins: [
+    //     'a11ychecker','advlist','advcode','advtable','autolink','checklist','export',
+    //     'lists','link','image','charmap','preview','anchor','searchreplace','visualblocks',
+    //     'powerpaste','fullscreen','formatpainter','insertdatetime','media','table','help','wordcount'
+    //   ],
+    //   toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | ' +
+    //     'alignleft aligncenter alignright alignjustify | ' +
+    //     'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help',
+    //   setup: editor => {
+    //     // listen for changes in the editor content and update the original element
+    //     editor.on('change', () => {
+    //       const newContent = editor.getContent();
+    //       element.textContent = newContent;
+    //     });
+    //   }
+    // });
   });
 });
 
