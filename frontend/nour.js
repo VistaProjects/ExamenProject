@@ -85,6 +85,18 @@ Control sidebar
 `;
 
 
+// Load the HTML content into Cheerio
+// var $ = cheerio.load(document.documentElement.outerHTML);
+
+// // Find the div elements with the exact ID "delete" and remove them
+// $('#delete').remove();
+
+// // Get the updated HTML content
+// var updatedHtmlContent = $.html();
+
+// console.log(updatedHtmlContent);
+
+
 function capitalize(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -94,11 +106,11 @@ function loadData() {
   .then(response => response.json())
   .then(data => {
     // this is the example data : {"cards":{"test":"<p>hoi rik<\/p>","tete":"ewtwetw","tetwe":"dsggsg","dsgsdgsd":"dsgdsg","testingmetrik":"<p>hoi rik<\/p> <html>"},"navbar":{"Testing":"<!DOCTYPE html> <html> <head> \t<title>HTML Form Example<\/title> <\/head> <body>  <h2>HTML Form Example<\/h2>","rikiee":"<p>hoi rik<\/p> <html>"},"success":true}
-    console.log(data);
+    // console.log(data);
     // if (data.success == false) alert(data.error.text);
   
     var accordion = document.querySelector('.accordion')
-    console.log(accordion);
+    // console.log(accordion);
     // loop through the properties of the object and use that as the title and
     // content of the accordion
     for (const [key, value] of Object.entries(data)) {
@@ -141,6 +153,7 @@ function loadData() {
           // div.setAttribute('id', 'borderTest');
           div.innerHTML = value[title];
           
+          mainDiv.innerHTML += `<h4>${capitalize(title)}</h4>` 
           mainDiv.appendChild(div);
           mainDiv.innerHTML += '<hr>'
           
