@@ -4,6 +4,10 @@
 var mySection = document.getElementById('hero'),
   sideButton = document.createElement('div');
 sideButton.innerHTML = `
+<!-- create button to call saveHtml() -->
+<button onclick="saveHtml()">Save</button>
+
+<!-- Button trigger offcanvas -->
 <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
 Control sidebar
 </a>
@@ -85,16 +89,39 @@ Control sidebar
 `;
 
 
-// Load the HTML content into Cheerio
-// var $ = cheerio.load(document.documentElement.outerHTML);
+function saveHtml() {
+  // remove all the divs with id delete
+  $('div[id=delete]').remove();
+  
+  let html = document.documentElement.outerHTML
+  
+  // Create a Blob object from the string data
+  var blob = new Blob([html], { type: 'text/plain' });
 
-// // Find the div elements with the exact ID "delete" and remove them
-// $('#delete').remove();
+  // Create a FormData object
+  var formData = new FormData();
+  formData.append('file', blob, 'new.html');
 
-// // Get the updated HTML content
-// var updatedHtmlContent = $.html();
+  // Create a new XMLHttpRequest object
+  var xhr = new XMLHttpRequest();
 
-// console.log(updatedHtmlContent);
+  // Set up the AJAX request
+  xhr.open('POST', '../backend/?Update=true', true);
+
+  // Define the callback function when the request is complete
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      console.log(xhr.responseText);
+      console.log('File uploaded successfully');
+    } else {
+      console.log('Error uploading file');
+    }
+  };
+
+  // Send the FormData object to the PHP server
+  xhr.send(formData);
+
+}
 
 
 function capitalize(string) {
@@ -170,7 +197,6 @@ sideButton.style.zIndex = 10;
 sideButton.style.position = "fixed";
 mySection.appendChild(sideButton);
 mySection.insertBefore(sideButton, mySection.firstElementChild);
-
 
 var checkExist = setInterval(function() {
   if (document.querySelectorAll('.accordion').length) {
