@@ -338,3 +338,31 @@ tinymce.init({
 });
 
 
+// To have border around the Element on hover
+window.addEventListener("mouseover", (e) => {
+
+  if (!e.target) return
+  
+  let element = e.target
+
+  element.style.border = "1px solid red";
+
+  // add border to the element that is hovered
+  // let element = document.getElementById(`${e.target.id}`);
+
+  // element.style.border = "1px solid red";
+});
+
+window.addEventListener("mouseout", (e) => {
+  if (!e.target) return
+  
+  let element = e.target
+
+  element.style.border = "0px solid red";
+
+  // add border to the element that is hovered
+  // let element = document.getElementById(`${e.target.id}`);
+
+  // element.style.border = "0px solid red";
+});
+
