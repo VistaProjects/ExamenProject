@@ -4,95 +4,97 @@
 var mySection = document.getElementById('hero'),
   sideButton = document.createElement('div');
 sideButton.innerHTML = `
-<!-- create button to call saveHtml() -->
-<button onclick="saveHtml()">Save</button>
+<div id="delete">
+  <!-- create button to call saveHtml() -->
+  <button onclick="saveHtml()">Save</button>
 
-<!-- Button trigger offcanvas -->
-<a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
-Control sidebar
-</a>
-
-
-
-<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" data-bs-scroll="true" data-bs-backdrop="false">
-<div class="offcanvas-header">
-  <h5 class="offcanvas-title" id="offcanvasExampleLabel">Control Panel</h5>
-  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-</div>
-<div class="offcanvas-body">
-  <!-- show accrodion -->
-  <div class="accordion" id="accordionPanelsStayOpenExample">
-
-    <!-- Start Editing The Text Nour -->
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="panelsStayOpen-headingFive">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="true" aria-controls="panelsStayOpen-collapseFive">
-          <h6>Edit Text</h6>
-        </button>
-      </h2>
-      <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
-        <div class="accordion-body">
-          <div class="mb-3">
-            <label for="formGroupExampleInput" class="form-label">Change the Text</label>
-            
-            <!-- <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder"> -->
-            <textarea type="text" class="form-control" id="mytextarea" placeholder="Example input placeholder" value=""></textarea>
-          </div>
-          <div class="mb-3">
-            <label for="formGroupExampleInput2" class="form-label">Change color</label>
-            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder">
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- End Editing The Text Nour -->
-
-    <!-- Start Editing The Text Nour -->
-    
-    <!-- End Editing The Text Nour-->
-
-
-    <!-- Start Editing The Photos-->
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-          <h6>Edit photos</h6>
-        </button>
-      </h2>
-      <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
-        <div class="accordion-body">
-          <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-        </div>
-      </div>
-    </div>
-    <!-- End Editing The Photos -->
-
-    <!-- Start Editing The Videos-->
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-          <h6>Edit videos</h6>
-        </button>
-      </h2>
-      <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
-        <div class="accordion-body">
-          <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-        </div>
-      </div>
-    </div>
-    <!-- End Editing The Videos-->
+  <!-- Button trigger offcanvas -->
+  <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+  Control sidebar
+  </a>
 
 
 
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" data-bs-scroll="true" data-bs-backdrop="false">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Control Panel</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
-</div>
+  <div class="offcanvas-body">
+    <!-- show accrodion -->
+    <div class="accordion" id="accordionPanelsStayOpenExample">
+
+      <!-- Start Editing The Text Nour -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-headingFive">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="true" aria-controls="panelsStayOpen-collapseFive">
+            <h6>Edit Text</h6>
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+          <div class="accordion-body">
+            <div class="mb-3">
+              <label for="formGroupExampleInput" class="form-label">Change the Text</label>
+              
+              <!-- <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder"> -->
+              <textarea type="text" class="form-control" id="mytextarea" placeholder="Example input placeholder" value=""></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="formGroupExampleInput2" class="form-label">Change color</label>
+              <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder">
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Editing The Text Nour -->
+
+      <!-- Start Editing The Text Nour -->
+      
+      <!-- End Editing The Text Nour-->
+
+
+      <!-- Start Editing The Photos-->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+            <h6>Edit photos</h6>
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+          <div class="accordion-body">
+            <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+          </div>
+        </div>
+      </div>
+      <!-- End Editing The Photos -->
+
+      <!-- Start Editing The Videos-->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+            <h6>Edit videos</h6>
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+          <div class="accordion-body">
+            <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+          </div>
+        </div>
+      </div>
+      <!-- End Editing The Videos-->
+
+
+
+    </div>
+  </div>
+  </div>
 </div>
 `;
 
 
 function saveHtml() {
   // remove all the divs with id delete
-  $('div[id=delete]').remove();
+  $('*[id=delete]').remove();
   
   let html = document.documentElement.outerHTML
   
@@ -130,15 +132,15 @@ function capitalize(string) {
 }
 
 function loadData() {
-  fetch('http://localhost/examenproject/backend/?item=all')
+  fetch('http://localhost/ExamenProject/backend/?item=all')
   .then(response => response.json())
   .then(data => {
     // this is the example data : {"cards":{"test":"<p>hoi rik<\/p>","tete":"ewtwetw","tetwe":"dsggsg","dsgsdgsd":"dsgdsg","testingmetrik":"<p>hoi rik<\/p> <html>"},"navbar":{"Testing":"<!DOCTYPE html> <html> <head> \t<title>HTML Form Example<\/title> <\/head> <body>  <h2>HTML Form Example<\/h2>","rikiee":"<p>hoi rik<\/p> <html>"},"success":true}
-    // console.log(data);
+    console.log(data);
     // if (data.success == false) alert(data.error.text);
   
     var accordion = document.querySelector('.accordion')
-    // console.log(accordion);
+    console.log(accordion);
     // loop through the properties of the object and use that as the title and
     // content of the accordion
     for (const [key, value] of Object.entries(data)) {
