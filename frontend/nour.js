@@ -232,10 +232,13 @@ sideButton.addEventListener('click', () => {
 // get all the paragraphs and headers on the page
 const elements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, ul, li');
 
-// elements.setAttribute('contenteditable', 'true');
 // add an event listener to each element
 elements.forEach(element => {
   element.addEventListener('click', () => {
+    const EditingElements = document.querySelectorAll('.editing');
+    EditingElements.forEach(element => {
+      element.classList.remove('editing');
+    });
     // add a class to the clicked element
     element.classList.add('clicked');
     
@@ -252,7 +255,7 @@ elements.forEach(element => {
     var elmnt = iframe.contentWindow.document.getElementById("tinymce");
     elmnt.removeAttribute('data-mce-placeholder');
     elmnt.removeAttribute('aria-placeholder');
-    element.classList.add('editing')
+    element.classList.add('editing');
 
 
     // const classDiv = document.getElementById('tinymce');
@@ -268,79 +271,12 @@ elements.forEach(element => {
 });
 
 
-// // get all the paragraphs and headers on the page
-// const elements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6');
-// // console.log(elements);
-
-// // add an event listener to each element
-// elements.forEach(element => {
-//   element.addEventListener('click', () => {
-//     const text = element.textContent; // get the text content of the clicked element
-// console.log(text);
-//     // open the sidebar and populate it with the text content
-//     // you can use the same code we used earlier to create the sidebar and populate it with content
-//     // here, we'll assume you've stored the sidebar element in a variable called "sidebar"
-//     // const sidebarBody = sidebar.querySelector('.offcanvas-body');
-//     const sidebar = document.querySelector('#offcanvasExample');
-//     const sidebarBody = sidebar.classList.toggle('show');
-//     sidebarBody.innerHTML = `<textarea id="editor">${text}</textarea>`;
-//     console.log(sidebarBody);
-
-//         // initialize TinyMCE on the text area
-//     tinymce.init({
-//       selector: '#editor',
-//       height: 200,
-//       plugins: [
-//         'a11ychecker','advlist','advcode','advtable','autolink','checklist','export',
-//         'lists','link','image','charmap','preview','anchor','searchreplace','visualblocks',
-//         'powerpaste','fullscreen','formatpainter','insertdatetime','media','table','help','wordcount'
-//       ],
-//       toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | ' +
-//         'alignleft aligncenter alignright alignjustify | ' +
-//         'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help',
-//       setup: editor => {
-//         // listen for changes in the editor content and update the original element
-//         editor.on('change', () => {
-//           const newContent = editor.getContent();
-//           element.textContent = newContent;
-//         });
-//       }
-//     });
-
-//     // show the sidebar
-//     const offcanvas = new bootstrap.Offcanvas(sidebar);
-//     offcanvas.show();
-//   });
-// });
-
-
-// // To have border around the Element on hover
-// window.addEventListener("mouseover", (e) => {
-
-//   if (!e.target) return
-  
-//   let element = e.target
-
-//   element.style.border = "1px solid red";
-
-//   // add border to the element that is hovered
-//   // let element = document.getElementById(`${e.target.id}`);
-
-//   // element.style.border = "1px solid red";
-// });
-
-// window.addEventListener("mouseout", (e) => {
-//   if (!e.target) return
-  
-//   let element = e.target
-
-//   element.style.border = "0px solid red";
-
-// });
 
 // To make it active and working
 tinymce.init({
   selector: '#mytextarea',
+  fix_list_elements : true,
+  forced_root_block : 'p',
   height: 300,
   plugins: [
     'a11ychecker','advlist','advcode','advtable','autolink','checklist','export',
@@ -362,6 +298,7 @@ tinymce.init({
     });
   }
 });
+
 
 
 // To have border around the Element on hover
