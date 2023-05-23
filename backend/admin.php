@@ -151,7 +151,7 @@ if(isset($_POST['submit'])) {
 
 
 ?>
-<h2>Add new HTML code</h2>
+<h2>Add new Component to DB</h2>
 <form id="html" method="post" action="<?php echo $_SERVER['PHP_SELF'] . "?type=addhtml" ?>">
 	<label for="TABELNAME">TABELNAME:</label>
 	<select name="TABELNAME">
@@ -174,7 +174,7 @@ if(isset($_POST['submit'])) {
 
 <hr>
 
-<h2>Add new SQL Table</h2>
+<h2>Add new categorie</h2>
 
 <form id="table" method="post" action="<?php echo $_SERVER['PHP_SELF'] . "?type=addtable" ?>" onsubmit='return validateForm()'>
 	<label for="TABELNAME">TABELNAME:</label>
@@ -185,7 +185,7 @@ if(isset($_POST['submit'])) {
 
 <hr>
 
-<h2>Edit html code</h2>
+<h2>Edit Component</h2>
 
 <form id="edit" method="post" action="<?php echo $_SERVER['PHP_SELF'] . "?type=edithtml" ?>" >
 	<label for="TABELNAME">TABELNAME:</label>
