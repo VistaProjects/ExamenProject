@@ -1,4 +1,6 @@
 // Sidebar controlpanel
+var baselink = "http://localhost/examenproject/backend";
+
 var mySection = document.getElementById('hero'),
   sideButton = document.createElement('div');
 sideButton.innerHTML = `
@@ -114,7 +116,7 @@ function saveHtml() {
   var xhr = new XMLHttpRequest();
 
   // Set up the AJAX request
-  xhr.open('POST', '../ExamenProject/backend/?Update=true', true);
+  xhr.open('POST', `${baselink}/?Update=true`, true);
 
   // Define the callback function when the request is complete
   xhr.onload = function() {
@@ -137,7 +139,7 @@ function capitalize(string) {
 }
 
 function loadData() {
-  fetch('http://localhost/ExamenProject/backend/?item=all')
+  fetch(`${baselink}/?item=all`)
   .then(response => response.json())
   .then(data => {
     // this is the example data : {"cards":{"test":"<p>hoi rik<\/p>","tete":"ewtwetw","tetwe":"dsggsg","dsgsdgsd":"dsgdsg","testingmetrik":"<p>hoi rik<\/p> <html>"},"navbar":{"Testing":"<!DOCTYPE html> <html> <head> \t<title>HTML Form Example<\/title> <\/head> <body>  <h2>HTML Form Example<\/h2>","rikiee":"<p>hoi rik<\/p> <html>"},"success":true}
@@ -191,7 +193,7 @@ function loadData() {
           mainDiv.innerHTML += `<h4>${capitalize(title)}</h4>` 
           mainDiv.appendChild(div);
           mainDiv.innerHTML += '<hr>'
-          
+          loaded();
         }
       }
     }
@@ -238,6 +240,11 @@ elements.forEach(element => {
   element.addEventListener('click', () => {
     // add a class to the clicked element
     element.classList.add('clicked');
+
+    const EditElements = document.querySelectorAll('.editing');
+    EditElements.forEach(element => {
+      element.classList.remove('editing');
+    });
     
     // remove the class from all the other elements
     const allElements = document.querySelectorAll('.clicked');
@@ -391,12 +398,12 @@ window.addEventListener("mouseout", (e) => {
 
   // element.style.border = "0px solid red";
 });
-
-window.addEventListener("load", () => {
+function loaded() {
+// window.addEventListener("load", () => {
 
         const draggables = document.querySelectorAll('.drag');
         
-        console.log(draggables)
+        console.log(draggables);
         
         draggables.forEach(draggable => {
           draggable.addEventListener('dragstart', () => {
@@ -444,4 +451,4 @@ window.addEventListener("load", () => {
                 }
             }, { offset: Number.NEGATIVE_INFINITY }).element;
         }
-      })
+      }
