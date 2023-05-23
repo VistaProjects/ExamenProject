@@ -93,6 +93,11 @@ sideButton.innerHTML = `
 function saveHtml() {
   // remove all the divs with id delete
   $('*[id=delete]').remove();
+  var elements = document.getElementsByClassName('drag');
+
+  for (var i = 0; i < elements.length; i++) {
+    elements[i].removeAttribute('draggable');
+  }
   
   let html = document.documentElement.outerHTML
   
@@ -107,7 +112,7 @@ function saveHtml() {
   var xhr = new XMLHttpRequest();
 
   // Set up the AJAX request
-  xhr.open('POST', '../backend/?Update=true', true);
+  xhr.open('POST', '../ExamenProject/backend/?Update=true', true);
 
   // Define the callback function when the request is complete
   xhr.onload = function() {
@@ -193,16 +198,15 @@ function loadData() {
 
 
 
-
 // styleing sidebar
 sideButton.style.zIndex = 10;
 sideButton.style.position = "fixed";
 mySection.appendChild(sideButton);
 mySection.insertBefore(sideButton, mySection.firstElementChild);
 
-
 const myDivSideBar = document.getElementsByClassName('offcanvas offcanvas-start')[0];
 myDivSideBar.style.transform = 'translateY(89px)';
+
 
 var checkExist = setInterval(function() {
   if (document.querySelectorAll('.accordion').length) {
@@ -215,6 +219,7 @@ var checkExist = setInterval(function() {
 
 // get the sidebar button
 var sideButton = document.querySelector('.btn-primary');
+var sidebarTextArea = document.getElementById('mytextarea');
 
 // add an event listener to the button to open the sidebar
 sideButton.addEventListener('click', () => {
@@ -223,13 +228,15 @@ sideButton.addEventListener('click', () => {
 });
 
 // get all the paragraphs and headers on the page
-const elements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6');
+const elements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, ul, li');
 
+// elements.setAttribute('contenteditable', 'true');
 // add an event listener to each element
 elements.forEach(element => {
   element.addEventListener('click', () => {
     // add a class to the clicked element
     element.classList.add('clicked');
+    
     // remove the class from all the other elements
     const allElements = document.querySelectorAll('.clicked');
     allElements.forEach(element => {
@@ -243,48 +250,20 @@ elements.forEach(element => {
     var elmnt = iframe.contentWindow.document.getElementById("tinymce");
     elmnt.removeAttribute('data-mce-placeholder');
     elmnt.removeAttribute('aria-placeholder');
-
+    element.classList.add('editing')
 
 
     // const classDiv = document.getElementById('tinymce');
     const p = iframe.contentWindow.document.getElementsByTagName("p")[0];
     p.innerHTML = text;
-    // elmnt.appendChild(p);
-    // const para = document.getElementById("tinymce").lastElementChild;
     console.log(p);
-    // classDiv.appendChild(sidebarTextArea);
-    // classDiv.insertBefore(sidebarTextArea, classDiv.firstElementChild);
 
-
-    // sidebarTextArea.nodeTextContent;
     
     // show the sidebar
     const offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasExample'));
     offcanvas.show();
-
-    // initialize TinyMCE on the text area
-    // tinymce.init({
-    //   selector: '#mytextarea',
-    //   height: 300,
-    //   plugins: [
-    //     'a11ychecker','advlist','advcode','advtable','autolink','checklist','export',
-    //     'lists','link','image','charmap','preview','anchor','searchreplace','visualblocks',
-    //     'powerpaste','fullscreen','formatpainter','insertdatetime','media','table','help','wordcount'
-    //   ],
-    //   toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | ' +
-    //     'alignleft aligncenter alignright alignjustify | ' +
-    //     'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help',
-    //   setup: editor => {
-    //     // listen for changes in the editor content and update the original element
-    //     editor.on('change', () => {
-    //       const newContent = editor.getContent();
-    //       element.textContent = newContent;
-    //     });
-    //   }
-    // });
   });
 });
-
 
 
 // // get all the paragraphs and headers on the page
@@ -371,9 +350,13 @@ tinymce.init({
     'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help',
   setup: editor => {
     // listen for changes in the editor content and update the original element
-    editor.on('change', () => {
-      const newContent = editor.getContent();
-      element.textContent = newContent;
+    editor.on('keydown', () => {
+      var newContent = editor.getContent({ format: "text" });      ;
+      console.log(newContent)
+      const elemnt = document.querySelector('.editing');
+      console.log(elemnt)
+      elemnt.innerHTML = newContent;
+      // elemnt.textContent = newContent;
     });
   }
 });
@@ -407,3 +390,56 @@ window.addEventListener("mouseout", (e) => {
   // element.style.border = "0px solid red";
 });
 
+window.addEventListener("load", () => {
+
+        const draggables = document.querySelectorAll('.drag');
+        
+        console.log(draggables)
+        
+        draggables.forEach(draggable => {
+          draggable.addEventListener('dragstart', () => {
+            draggable.classList.add('dragging');
+            console.log("dragging")
+            const containers = document.querySelectorAll('.editing');
+            // console.log(containers)
+                containers.forEach(container => {
+                    container.addEventListener('dragover', e => {
+                        e.preventDefault();
+                        // console.log(container)
+                        const afterElement = getDragAfterElement(container, e.clientY);
+                        const draggable = document.querySelector('.dragging');
+                        // console.log(afterElement)
+                        if (afterElement !== null) {
+                          // console.log("teesst")
+                          // get parent from containers
+                            const parent = container.parentElement;
+                            parent.insertBefore(draggable, container);
+                            parent.removeChild(container);
+                        } else {
+                            container.insertBefore(draggable, afterElement);
+                        }
+                    });
+                });
+            });
+
+            draggable.addEventListener('dragend', () => {
+                draggable.classList.remove('dragging');
+                console.log("not dragging")
+            });
+        });
+
+
+        function getDragAfterElement(container, y) {
+            const draggableElements = [...container.querySelectorAll('.drag:not(.dragging)')];
+
+            return draggableElements.reduce((closest, child) => {
+                const box = child.getBoundingClientRect();
+                const offset = y - box.top - box.height / 2;
+                if (offset < 0 && offset > closest.offset) {
+                    return { offset: offset, element: child };
+                } else {
+                    return closest;
+                }
+            }, { offset: Number.NEGATIVE_INFINITY }).element;
+        }
+      })

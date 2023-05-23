@@ -78,7 +78,7 @@
                             <div class="card-body">
                                 <div class="drag-container">
                                 <?php
-                                    $url = "http://localhost/backend/?item=all";
+                                    $url = "http://localhost/examenproject/backend/?item=all";
                                     $response = file_get_contents($url);
                                     $result = json_decode($response);
                                     foreach ($result as $key => $value) {
@@ -128,7 +128,7 @@
     </div>
     <script >
         const draggables = document.querySelectorAll('.drag');
-        const containers = document.querySelectorAll('.drop');
+        const containers = document.querySelectorAll('.editing');
 
         draggables.forEach(draggable => {
             draggable.addEventListener('dragstart', () => {

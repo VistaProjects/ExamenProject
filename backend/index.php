@@ -33,8 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['file']) && $_FILES['
 	} else {
 	  echo 'Error uploading file';
 	}
-  } else {
-	echo 'Invalid request';
 }
 
 
