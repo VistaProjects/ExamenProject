@@ -93,11 +93,13 @@ sideButton.innerHTML = `
 function saveHtml() {
   // remove all the divs with id delete
   $('*[id=delete]').remove();
+  
   var elements = document.getElementsByClassName('drag');
 
   for (var i = 0; i < elements.length; i++) {
     elements[i].removeAttribute('draggable');
   }
+
   
   let html = document.documentElement.outerHTML
   

@@ -1,13 +1,14 @@
-<?php
-
-?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Drag and Drop</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
     <style>
         .dragging {
             opacity: 0.5;
@@ -15,48 +16,45 @@
 
         .drag {
             background: #fff;
-            /* border: 1px solid #ddd; */
             padding: 20px;
             margin-bottom: 10px;
         }
 
         .drop {
             background: #fff;
-            /* border: 1px solid #ddd; */
             padding: 20px;
             margin-bottom: 10px;
             min-height: 100px;
         }
-        /* make the drag smooth */
+
         .drag {
             transition: transform 0.2s;
             cursor: move;
         }
-        /* make the drop smooth */
+
         .drop {
             transition: background-color 0.2s;
         }
-        /* make the drag bigger */
+
         .dragging {
             transform: scale(1.2);
         }
-        /* make the drop change color */
+
         .drop.dragging-over {
             background-color: #efefef;
         }
 
-        /* make while dragging show element */
         .dragging {
             opacity: 0.5;
         }
+
         .card-body {
-    display: flex;
-    }
+            display: flex;
+        }
 
-.col-9 {
-    margin-left: auto;
-}
-
+        .col-9 {
+            margin-left: auto;
+        }
 
     </style>
 </head>
@@ -77,17 +75,16 @@
                             <!-- call appi and render all responses as drags -->
                             <div class="card-body">
                                 <div class="drag-container">
-                                <?php
-                                    $url = "http://localhost/examenproject/backend/?item=all";
-                                    $response = file_get_contents($url);
-                                    $result = json_decode($response);
-                                    foreach ($result as $key => $value) {
-                                        // echo "<div class='drag' draggable='true'>" . $value . "</div>";
-                                        foreach ($value as $key => $value) {
-                                            echo "<div class='drag' draggable='true'>" . $value . "</div>";
+                                    <?php
+                                        $url = "http://localhost/examenproject/backend/?item=all";
+                                        $response = file_get_contents($url);
+                                        $result = json_decode($response);
+                                        foreach ($result as $key => $value) {
+                                            foreach ($value as $key => $value) {
+                                                echo "<div class='drag' draggable='true'>" . $value . "</div>";
+                                            }
                                         }
-                                    }
-                                ?>
+                                    ?>
                                 </div>
                             </div>
                         </div>
@@ -126,7 +123,7 @@
             </div>
         </div>
     </div>
-    <script >
+    <script>
         const draggables = document.querySelectorAll('.drag');
         const containers = document.querySelectorAll('.editing');
 
@@ -143,12 +140,14 @@
         containers.forEach(container => {
             container.addEventListener('dragover', e => {
                 e.preventDefault();
-                const afterElement = getDragAfterElement(container, e.clientY);
-                const draggable = document.querySelector('.dragging');
-                if (afterElement == null) {
-                    container.appendChild(draggable);
-                } else {
-                    container.insertBefore(draggable, afterElement);
+                if (!container.classList.contains('drag')) {
+                    const afterElement = getDragAfterElement(container, e.clientY);
+                    const draggable = document.querySelector('.dragging');
+                    if (afterElement == null) {
+                        container.appendChild(draggable);
+                    } else {
+                        container.insertBefore(draggable, afterElement);
+                    }
                 }
             });
         });
@@ -160,13 +159,19 @@
                 const box = child.getBoundingClientRect();
                 const offset = y - box.top - box.height / 2;
                 if (offset < 0 && offset > closest.offset) {
-                    return { offset: offset, element: child };
+                    return {
+                        offset: offset,
+                        element: child
+                    };
                 } else {
                     return closest;
                 }
-            }, { offset: Number.NEGATIVE_INFINITY }).element;
+            }, {
+                offset: Number.NEGATIVE_INFINITY
+            }).element;
         }
 
     </script>
 </body>
+
 </html>
