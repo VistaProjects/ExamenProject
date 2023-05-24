@@ -359,7 +359,7 @@ tinymce.init({
     'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help',
   setup: editor => {
     // listen for changes in the editor content and update the original element
-    editor.on('keydown', () => {
+    editor.on('keyup', () => {
       var newContent = editor.getContent({ format: "text" });      ;
       console.log(newContent)
       const elemnt = document.querySelector('.editing');
@@ -375,10 +375,16 @@ tinymce.init({
 window.addEventListener("mouseover", (e) => {
 
   if (!e.target) return
+  // check if e = <p>
+  // console.log(e.target.tagName);
+  elements.forEach(p => {
+    // console.log(p);
+    if (e.target.tagName == p.tagName) {
+      let element = e.target
   
-  let element = e.target
-
-  element.style.border = "1px solid red";
+      element.style.border = "1px solid green";
+    }
+  });
 
   // add border to the element that is hovered
   // let element = document.getElementById(`${e.target.id}`);
