@@ -125,7 +125,7 @@
     </div>
     <script>
         const draggables = document.querySelectorAll('.drag');
-        const containers = document.querySelectorAll('.editing');
+        const containers = document.querySelectorAll('.drop');
 
         draggables.forEach(draggable => {
             draggable.addEventListener('dragstart', () => {

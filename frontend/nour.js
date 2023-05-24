@@ -422,6 +422,7 @@ function loaded() {
                           // console.log("teesst")
                           // get parent from containers
                             const parent = container.parentElement;
+                            if (!parent) return;
                             parent.insertBefore(draggable, container);
                             parent.removeChild(container);
                         } else {

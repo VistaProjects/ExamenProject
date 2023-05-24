@@ -153,7 +153,7 @@ if(isset($_POST['submit'])) {
 ?>
 <h2>Add new Component to DB</h2>
 <form id="html" method="post" action="<?php echo $_SERVER['PHP_SELF'] . "?type=addhtml" ?>">
-	<label for="TABELNAME">TABELNAME:</label>
+	<label for="TABELNAME">CATEGORIE:</label>
 	<select name="TABELNAME">
         <?php
             // Loop through options array and print options
@@ -177,7 +177,7 @@ if(isset($_POST['submit'])) {
 <h2>Add new categorie</h2>
 
 <form id="table" method="post" action="<?php echo $_SERVER['PHP_SELF'] . "?type=addtable" ?>" onsubmit='return validateForm()'>
-	<label for="TABELNAME">TABELNAME:</label>
+	<label for="TABELNAME">CATEGORIE:</label>
 	<input type="text" name="TABELNAME" onchange="checkName()" id="name"><br>
     <span id="name-error"></span><br>
     <input type="submit" name="submit" value="Submit" id="inputButton">
