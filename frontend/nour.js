@@ -37,9 +37,10 @@ sideButton.innerHTML = `
               <!-- <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder"> -->
               <textarea type="text" class="form-control" id="mytextarea" placeholder="Example input placeholder" value=""></textarea>
             </div>
-            <div class="mb-3">
-              <label for="formGroupExampleInput2" class="form-label">Change color</label>
-              <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder">
+            <div class="mb-3 changeBackground">
+              <label for="formGroupExampleInput2" class="form-label changeBackground" style="display: block;">Change Background Color</label>
+              <input type="color" id="colorInputColor">
+              <input type="button" id="colorButton" value="Click To Change Color" onclick="changeColor()">
             </div>
           </div>
         </div>
@@ -222,6 +223,13 @@ var checkExist = setInterval(function() {
 // get the sidebar button
 var sideButton = document.querySelector('.btn-primary');
 var sidebarTextArea = document.getElementById('mytextarea');
+
+// Change the background color of the page
+function changeColor() {
+  let color = document.getElementById('colorInputColor').value;
+  document.body.style.backgroundColor = color;
+  // document.getElementById('colorInputText').value = color;
+}
 
 // add an event listener to the button to open the sidebar
 sideButton.addEventListener('click', () => {
