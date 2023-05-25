@@ -1,25 +1,26 @@
 // Sidebar controlpanel
 var baselink = "http://localhost/examenproject/backend";
 
-var mySection = document.getElementById('hero'),
-  sideButton = document.createElement('div');
+
+
+// create div for side panel
+sideButton = document.createElement('div');
+// creat html for side panel
 sideButton.innerHTML = `
-<div id="delete">
-  <!-- create button to call saveHtml() -->
-  <button onclick="saveHtml()">Save</button>
 
-  <!-- Button trigger offcanvas -->
-  <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
-  Control sidebar
-  </a>
+<!-- Button trigger offcanvas -->
+<a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+Control sidebar
+</a>
 
 
-
-  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" data-bs-scroll="true" data-bs-backdrop="false">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Control Panel</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
+<div class="offcanvas offcanvas-start show" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" data-bs-scroll="true" data-bs-backdrop="false">
+<div class="offcanvas-header">
+<h5 class="offcanvas-title text-center lead" id="offcanvasExampleLabel">Control Panel</h5>
+<!-- <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button> -->
+</div>
+<!-- create button to call saveHtml() -->
+<button class="btn btn-primary" onclick="saveHtml()">Save</button>
   <div class="offcanvas-body">
     <!-- show accrodion -->
     <div class="accordion" id="accordionPanelsStayOpenExample">
@@ -88,7 +89,6 @@ sideButton.innerHTML = `
     </div>
   </div>
   </div>
-</div>
 `;
 
 
@@ -201,12 +201,26 @@ function loadData() {
 }
 
 
+// We have a div with element sidebutton and we need to put css on it with transform that it will be the same height as the scrollbar
 
-// styleing sidebar
-sideButton.style.zIndex = 10;
-sideButton.style.position = "fixed";
-mySection.appendChild(sideButton);
-mySection.insertBefore(sideButton, mySection.firstElementChild);
+
+
+// set id to sideButton
+sideButton.setAttribute('id', 'delete');
+sideButton.setAttribute('class', 'containertest');
+// get body
+const body = document.querySelector('body');
+// set sidebutton to body
+body.appendChild(sideButton);
+body.insertBefore(sideButton, body.firstChild);
+
+window.addEventListener('scroll', function() {
+  var container = document.querySelector('#offcanvasExample');
+  // var containerRect = container.getBoundingClientRect();
+  var scrollPosition = window.scrollY * 1.25;
+  console.log(scrollPosition);
+  container.style = 'top: ' + scrollPosition + 'px;';
+});
 
 const myDivSideBar = document.getElementsByClassName('offcanvas offcanvas-start')[0];
 myDivSideBar.style.transform = 'translateY(89px)';
