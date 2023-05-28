@@ -28,9 +28,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['file']) && $_FILES['
 
 	// Get the temporary file path
 	$tempFilePath = $_FILES['file']['tmp_name'];
+	$currentDateTime = new DateTime();
+	$currentDateTime->setTimezone(new DateTimeZone('Europe/Amsterdam'));
+	// Format the current time as a string
+	$formattedDateTime = $currentDateTime->format('d-m-Y H_i');
 
+	// Output the formatted string
+	// $formattedDateTime . ".html";
 	// The name of the file that will be saved on the server
-	$newFilePath = './new.html';
+	$newFilePath = $formattedDateTime. ".html";
   
 	// Move the uploaded file to the desired location
 	if (move_uploaded_file($tempFilePath, $newFilePath)) {

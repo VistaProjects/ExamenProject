@@ -40,9 +40,10 @@ Control sidebar
               <!-- <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder"> -->
               <textarea type="text" class="form-control" id="mytextarea" placeholder="Example input placeholder" value=""></textarea>
             </div>
-            <div class="mb-3">
-              <label for="formGroupExampleInput2" class="form-label">Change color</label>
-              <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder">
+            <div class="mb-3 changeBackground">
+              <label for="formGroupExampleInput2" class="form-label changeBackground" style="display: block;">Change Background Color</label>
+              <input type="color" id="colorInputColor">
+              <input type="button" id="colorButton" value="Click To Change Color" onclick="changeColor()">
             </div>
           </div>
         </div>
@@ -90,6 +91,13 @@ Control sidebar
   </div>
   </div>
 `;
+
+
+function changeColor() {
+  let color = document.getElementById('colorInputColor').value;
+  document.body.style.backgroundColor = color;
+  // document.getElementById('colorInputText').value = color;
+}
 
 
 function saveHtml() {
@@ -289,88 +297,18 @@ elements.forEach(element => {
 });
 
 
-// // get all the paragraphs and headers on the page
-// const elements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6');
-// // console.log(elements);
-
-// // add an event listener to each element
-// elements.forEach(element => {
-//   element.addEventListener('click', () => {
-//     const text = element.textContent; // get the text content of the clicked element
-// console.log(text);
-//     // open the sidebar and populate it with the text content
-//     // you can use the same code we used earlier to create the sidebar and populate it with content
-//     // here, we'll assume you've stored the sidebar element in a variable called "sidebar"
-//     // const sidebarBody = sidebar.querySelector('.offcanvas-body');
-//     const sidebar = document.querySelector('#offcanvasExample');
-//     const sidebarBody = sidebar.classList.toggle('show');
-//     sidebarBody.innerHTML = `<textarea id="editor">${text}</textarea>`;
-//     console.log(sidebarBody);
-
-//         // initialize TinyMCE on the text area
-//     tinymce.init({
-//       selector: '#editor',
-//       height: 200,
-//       plugins: [
-//         'a11ychecker','advlist','advcode','advtable','autolink','checklist','export',
-//         'lists','link','image','charmap','preview','anchor','searchreplace','visualblocks',
-//         'powerpaste','fullscreen','formatpainter','insertdatetime','media','table','help','wordcount'
-//       ],
-//       toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | ' +
-//         'alignleft aligncenter alignright alignjustify | ' +
-//         'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help',
-//       setup: editor => {
-//         // listen for changes in the editor content and update the original element
-//         editor.on('change', () => {
-//           const newContent = editor.getContent();
-//           element.textContent = newContent;
-//         });
-//       }
-//     });
-
-//     // show the sidebar
-//     const offcanvas = new bootstrap.Offcanvas(sidebar);
-//     offcanvas.show();
-//   });
-// });
-
-
-// // To have border around the Element on hover
-// window.addEventListener("mouseover", (e) => {
-
-//   if (!e.target) return
-  
-//   let element = e.target
-
-//   element.style.border = "1px solid red";
-
-//   // add border to the element that is hovered
-//   // let element = document.getElementById(`${e.target.id}`);
-
-//   // element.style.border = "1px solid red";
-// });
-
-// window.addEventListener("mouseout", (e) => {
-//   if (!e.target) return
-  
-//   let element = e.target
-
-//   element.style.border = "0px solid red";
-
-// });
-
 // To make it active and working
 tinymce.init({
   selector: '#mytextarea',
   height: 300,
   plugins: [
-    'a11ychecker','advlist','advcode','advtable','autolink','checklist','export',
+    'advlist','autolink',
     'lists','link','image','charmap','preview','anchor','searchreplace','visualblocks',
-    'powerpaste','fullscreen','formatpainter','insertdatetime','media','table','help','wordcount'
+    'fullscreen','insertdatetime','media','table','help','wordcount'
   ],
-  toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | ' +
+  toolbar: 'undo redo | casechange blocks | bold italic backcolor | ' +
     'alignleft aligncenter alignright alignjustify | ' +
-    'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help',
+    'bullist numlist checklist outdent indent | removeformat | code table help',
   setup: editor => {
     // listen for changes in the editor content and update the original element
     editor.on('keyup', () => {
