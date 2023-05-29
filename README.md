@@ -1,6 +1,6 @@
 # Examenopdracht
 
-[Wiki](https://github.com/VistaProjects/ExamenProject/wiki.git)
+[Wiki](https://github.com/VistaProjects/ExamenProject/wiki)
 
 
 [Template 1](https://duzenco.nl/vista/template1/)  
