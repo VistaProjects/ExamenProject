@@ -1,5 +1,8 @@
 # Examenopdracht
 
+[Wiki](https://github.com/VistaProjects/ExamenProject.wiki.git)
+
+
 [Template 1](https://duzenco.nl/vista/template1/)  
 * _[Download](https://duzenco.nl/vista/Yummy.zip)_
 
