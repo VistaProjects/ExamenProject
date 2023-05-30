@@ -7,6 +7,11 @@ echo '<script id="delete" src="https://code.jquery.com/jquery-3.6.0.min.js" defe
 echo '<script id="delete" src="https://cdn.tiny.cloud/1/vikfeoahythvd97fj1c8efo28ke56n60a5luw2jfot1h490y/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>';
 ?>
 <style id="delete">
+    #SideButton {`
+        left: -100px !important;
+        display: none !important;
+    }
+    
     body {
         transform: scale(0.8); /* Adjust the scale value as per your requirement */
         transform-origin: top right;
